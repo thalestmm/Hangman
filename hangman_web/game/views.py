@@ -12,35 +12,64 @@ def index(request):
 def play(request):
     body = request.POST
     word_size = int(int(body['word-size'])/100*21 + 2)
-    word = ""
+    text = ""
     for i in range(word_size):
-        word += "_ "
-    word.rstrip(" ")
+        text += "_ "
+    text.rstrip(" ")
     random_word = select_random_word(word_size)
     encrypted_word = encrypt_word(random_word)
     context = {
-        "lifes": 10,
-        "word": word,
+        "lives": 10,
+        "word_placeholder": text,
         "letters": [chr(i) for i in range(65,91)],
         "key": encrypted_word,
     }
     return render(request, 'game/play.html', context)
 
 def update(request):
-    # TODO: Return invalid form if input is not a single letter
-    # TODO: Change input to upper case
     body = request.POST
+    old_letters = [item for item in list(body['available-letters']) if item not in ("'", ",", " ", "[", "]")]
     word = decrypt_word(body['key'])
 
+    letter_input = body['letter-input'].upper()
+    if letter_input not in old_letters:
+        # TODO: Make this page
+        context = {
+            "lives": int(body['remaining-lives']),
+            "word_placeholder": body['word-placeholder'],
+            "letters": old_letters,
+            "key": body['key'],
+        }
+        return render(request, 'game/invalid-input.html', context)
+
+    old_letters.remove(letter_input)
+    used_letters = [item for item in [chr(i) for i in range(65,91)] if item not in old_letters]
+
+    word_list = [letter for letter in word]
+    present_list = ["_" if letter not in used_letters else letter for letter in word_list]
+
+    if word_list == present_list:
+        # TODO: Make this page
+        return render(request, 'game/celebration.html')
+
     # TODO: If life reaches 0 and word is not complete, return GAME OVER
-    if int(body['remaining-lifes']) == 1:
+    if int(body['remaining-lives']) == 1:
         return render(request, 'game/game-over.html')
 
-    available_letters = []
+    text = ""
+    for i in present_list:
+        text += i + " "
+    text.rstrip(" ")
+    if text == body['word-placeholder']:
+        remaining_lives = int(body['remaining-lives']) - 1
+    else:
+        remaining_lives = int(body['remaining-lives'])
+    available_letters = old_letters
     context = {
-        "lifes": int(body['remaining-lifes'])-1,
-        "word": "_ _",
+        "lives": remaining_lives,
+        "word_placeholder": text,
         "letters": available_letters,
+        "key": body['key'],
     }
     return render(request, 'game/play.html', context)
 

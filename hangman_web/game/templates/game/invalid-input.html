@@ -1,0 +1,60 @@
+<div class="container" style="padding: 30px" id="word-placeholder">
+    <h1 style="text-align: center">
+        <strong style="font-family: 'Courier New'">{{ word_placeholder }}</strong>
+    </h1>
+    <br>
+    <p style="text-align: center">
+        {% for i in letters %}
+        <span>  {{ i }}  </span>
+        {% endfor %}
+    </p>
+</div>
+<div class="grid">
+    <div id="stats-area" style="justify-content: center; align-content: center">
+        <h3 style="text-align: center">Remaining Lives</h3>
+        <h1 style="text-align: center">{{ lives }}</h1>
+    </div>
+    <div id="input-area">
+        <form hx-post="/update" hx-swap="innerHTML" hx-target="#content-main">
+            {% csrf_token %}
+            <fieldset>
+                <label>
+                    New letter
+                    <input
+                            name="letter-input"
+                            placeholder="Type your letter here"
+                            aria-invalid="true"
+                            aria-describedby="invalid-helper"
+                    >
+                    <small id="invalid-helper">
+                      Please provide a valid value!
+                    </small>
+                    <input
+                            type="hidden"
+                            name="remaining-lives"
+                            value="{{ lives }}"
+                    >
+                    <input
+                            type="hidden"
+                            name="key"
+                            value="{{ key }}"
+                    >
+                    <input
+                            type="hidden"
+                            name="available-letters"
+                            value="{{ letters }}"
+                    >
+                    <input
+                            type="hidden"
+                            name="word-placeholder"
+                            value="{{ word_placeholder }}"
+                    >
+                </label>
+                <input
+                        type="submit"
+                        value="Try"
+                >
+            </fieldset>
+        </form>
+    </div>
+</div>
