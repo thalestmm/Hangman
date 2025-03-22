@@ -8,7 +8,7 @@ Tech Stack:
 - HTMx
 - PicoCSS
 
-Spin up your own server (`bash`):
+Spin up your own server (`unix`):
 ```bash
 
 gh repo clone thalestmm/Hangman
