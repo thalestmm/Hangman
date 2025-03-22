@@ -58,7 +58,10 @@ def update(request):
 
     # TODO: If life reaches 0 and word is not complete, return GAME OVER
     if int(body['remaining-lives']) == 1:
-        return render(request, 'game/game-over.html')
+        context = {
+            "word": word,
+        }
+        return render(request, 'game/game-over.html', context)
 
     text = ""
     for i in present_list:
