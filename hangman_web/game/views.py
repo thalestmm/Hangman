@@ -5,3 +5,9 @@ from django.http import HttpResponse
 
 def index(request):
     return render(request, 'game/index.html')
+
+def deduct(request):
+    context = {
+        "life": 7
+    }
+    return render(request, 'game/life.html', context)
