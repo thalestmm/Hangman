@@ -21,6 +21,7 @@ def play(request):
         text += "_ "
     text.rstrip(" ")
     random_word = select_random_word(word_size)
+    print(f"WORD: {random_word}")
     encrypted_word = encrypt_word(random_word)
     context = {
         "lives": data['starting_lives'],
@@ -37,7 +38,6 @@ def update(request):
 
     letter_input = body['letter-input'].upper()
     if letter_input not in old_letters:
-        # TODO: Make this page
         context = {
             "lives": int(body['remaining-lives']),
             "word_placeholder": body['word-placeholder'],
@@ -53,8 +53,10 @@ def update(request):
     present_list = ["_" if letter not in used_letters else letter for letter in word_list]
 
     if word_list == present_list:
-        # TODO: Make this page
-        return render(request, 'game/celebration.html')
+        context = {
+            "word": word,
+        }
+        return render(request, 'game/celebration.html', context)
 
     # TODO: If life reaches 0 and word is not complete, return GAME OVER
     if int(body['remaining-lives']) == 1:
