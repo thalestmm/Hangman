@@ -15,7 +15,7 @@ gh repo clone thalestmm/Hangman
 cd Hangman
 python3 -m venv .venv
 source .venv/bin/activate
-pip install requirements.txt
+pip install -r requirements.txt
 cd hangman_web
 python manage.py runserver
 ```
