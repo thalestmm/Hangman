@@ -13,7 +13,7 @@ Spin up your own server:
 
 gh repo clone thalestmm/Hangman
 cd Hangman
-python2 -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
 pip install requirements.txt
 cd hangman_web
