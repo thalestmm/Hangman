@@ -11,7 +11,7 @@
 </div>
 <div class="grid">
     <div id="stats-area" style="justify-content: center; align-content: center">
-        <h3 style="text-align: center">Remaining Lives</h3>
+        <h3 style="text-align: center">Vidas restantes</h3>
         <h1 style="text-align: center">{{ lives }}</h1>
     </div>
     <div id="input-area">
@@ -19,15 +19,15 @@
             {% csrf_token %}
             <fieldset>
                 <label>
-                    New letter
+                    Letra
                     <input
                             name="letter-input"
-                            placeholder="Type your letter here"
+                            placeholder="X"
                             aria-invalid="true"
                             aria-describedby="invalid-helper"
                     >
                     <small id="invalid-helper">
-                      Please provide a valid value!
+                     Escreva uma letra válida!
                     </small>
                     <input
                             type="hidden"
@@ -52,7 +52,7 @@
                 </label>
                 <input
                         type="submit"
-                        value="Try"
+                        value="Tentar"
                 >
             </fieldset>
         </form>

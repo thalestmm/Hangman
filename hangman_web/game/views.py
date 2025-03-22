@@ -2,6 +2,10 @@ from django.shortcuts import render
 import pandas as pd # TODO: reduce imports
 import random
 from cryptography.fernet import Fernet
+import yaml
+
+with open('game/data/config.yaml', 'r') as stream:
+    data = yaml.safe_load(stream)
 
 # Create your views here.
 
@@ -19,7 +23,7 @@ def play(request):
     random_word = select_random_word(word_size)
     encrypted_word = encrypt_word(random_word)
     context = {
-        "lives": 10,
+        "lives": data['starting_lives'],
         "word_placeholder": text,
         "letters": [chr(i) for i in range(65,91)],
         "key": encrypted_word,
