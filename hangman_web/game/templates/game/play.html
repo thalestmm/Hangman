@@ -2,6 +2,12 @@
     <h1 style="text-align: center">
         <strong style="font-family: 'Courier New'">{{ word }}</strong>
     </h1>
+    <br>
+    <p style="text-align: center">
+        {% for i in letters %}
+        <span>  {{ i }}  </span>
+        {% endfor %}
+    </p>
 </div>
 <div class="grid">
     <div id="stats-area" style="justify-content: center; align-content: center">
@@ -22,6 +28,11 @@
                         type="hidden"
                         name="remaining-lifes"
                         value="{{ lifes }}"
+                    >
+                    <input
+                            type="hidden"
+                            name="key"
+                            value="{{ key }}"
                     >
                 </label>
                 <input
