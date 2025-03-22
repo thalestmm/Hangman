@@ -1,5 +1,9 @@
 import pandas as pd
 
+# Pre-process a base .txt file containing all words
+# TODO: Change the output file to a sqlite DB
+# TODO: Add cmdline args
+
 def main():
     we = WordsEditor("words.txt")
     we.execute()
