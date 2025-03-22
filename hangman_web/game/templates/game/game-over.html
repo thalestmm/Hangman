@@ -1,3 +1,14 @@
 <h1 style="font-size: 100px; text-align: center; color: #FF0000">VOCÊ PERDEU</h1>
 <h4 style="text-align: center">Palavra:</h4>
 <h2 style="text-align: center">{{word}}</h2>
+<br><br>
+<div class="container-fluid" style="padding-left: 30em; padding-right: 30em">
+    <form hx-get="/" hx-swap="outerHTML" hx-target="#content-main">
+        <fieldset>
+            <input
+                type="submit"
+                value="Tentar outra vez"
+            >
+        </fieldset>
+    </form>
+</div>
