@@ -3,8 +3,7 @@
 Simple game project for the ITA Júnior data bootcamp (week 2).
 
 Tech Stack:
-- Python Django framework
-- Jinja templating system
+- Python Django
 - HTMx
 - PicoCSS
 
