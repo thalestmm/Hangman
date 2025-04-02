@@ -20,4 +20,4 @@ python manage.py runserver
 ```
 All done!
 
-Access the game via `http://127.0.0.1:8000/`
+Access the game locally via `http://127.0.0.1:8000/`
